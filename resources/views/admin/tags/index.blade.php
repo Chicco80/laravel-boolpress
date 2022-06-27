@@ -43,7 +43,7 @@
       <tr>
         
         <td><a href="{{route('admin.tags.show',$tag->id)}}">{{$tag->id}}</a></td>
-        <td><a href="{{route('admin.tags.show',$tag->id)}}">{{$tag->title}}</a></td>
+        <td><a href="{{route('admin.tags.show',$tag->id)}}">{{$tag->name}}</a></td>
         <td>{{$tag->created_at}}</td>
         <td><a href="{{route('admin.tags.edit',$tag->id)}}" class="btn btn-primary">Modifica</a></td>
         <form action="{{route('admin.tags.destroy', $tag->id)}}" method="post">

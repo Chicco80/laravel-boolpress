@@ -43,7 +43,7 @@
       <tr>
         
         <td><a href="{{route('admin.categories.show',$category->id)}}">{{$category->id}}</a></td>
-        <td><a href="{{route('admin.categories.show',$category->id)}}">{{$category->title}}</a></td>
+        <td><a href="{{route('admin.categories.show',$category->id)}}">{{$category->name}}</a></td>
         <td>{{$category->created_at}}</td>
         <td><a href="{{route('admin.categories.edit',$category->id)}}" class="btn btn-primary">Modifica</a></td>
         <form action="{{route('admin.categories.destroy', $category->id)}}" method="post">

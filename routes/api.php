@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/posts', 'Api/PostController@index');
-Route::get('/posts/{slug}', 'Api/PostController@show');
+Route::get('/posts', 'Api\PostController@index');
+Route::get('/posts/{slug}', 'Api\PostController@show');

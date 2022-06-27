@@ -4,10 +4,6 @@
         <ul>
             <li v-for="post in posts" :key="post.id">
                 {{ post.title }}
-                <a href="#" @click="getDetail(post.slug)">Vedi Dettaglio</a>
-                <span>
-                {{ post.detail.slug}}
-                </span>
             </li>
         </ul>
     </main>
@@ -18,20 +14,21 @@ export default {
     data(){
         return {
             posts: [],
-            detail:null
+            
         }
     },
 
-    methods : {
-        getDetail(slug){
-            axios.get('/api/posts'+ slug).then((response)=>{
-            this.detail = response.data;
-        })
-        }
-    },
+    // methods : {
+    //     getDetail(slug){
+    //         axios.get('/api/posts'+ slug).then((response)=>{
+    //         this.detail = response.data;
+    //     })
+    //     }
+    // },
     created(){
         axios.get('/api/posts').then((response)=>{
-            this.detail = response.data;
+            // console.log(response);
+            this.posts = response.data;
         })
     }
         
