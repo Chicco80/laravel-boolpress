@@ -32,6 +32,9 @@ Route::middleware('auth')
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
+
+
+//inseriamo come ultima rotta..
 Route::get("{any?}", function(){
     return view('guest.home');
-})->where("any",".*");
+})->where("any",".*"); //anche se c'è un punto con qualcosa a seguire

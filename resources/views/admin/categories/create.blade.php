@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
-<form method="post" action="{{route('admin.posts.store')}}">
+<form method="post" action="{{route('admin.categories.store')}}">
     @csrf
     <div class="mb-3">
-      <label for="title" class="form-label" placeholder="Title" value="{{old('title')}}">Titolo</label>
-      <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" aria-describedby="emailHelp" required>
-      @error('title')
+      <label for="name" class="form-label" placeholder="Name" value="{{old('name')}}">Name</label>
+      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="emailHelp" required>
+      @error('name')
             <div class="alert alert-danger">{{$message}}</div>
       @enderror
     </div>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
       <label for="content" class="form-label">Content</label>
       <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"cols="30" rows="10">{{old('content')}}</textarea>
       @error('content')
@@ -43,13 +43,7 @@
       </div>
       
 
-    </div>
+    </div> --}}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript">
-  </script>
-  <script type="text/javascript">
-    bkLib.onDomLoaded(nicEditors.allTextAreas);
-  </script>
-
 @endsection

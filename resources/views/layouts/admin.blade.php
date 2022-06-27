@@ -33,7 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a href="#">ciao</a></li>
+                        <li class="px-3"><a href="{{route('admin.home')}}">Home</a></li>
+                        <li class="px-3"><a href="{{route('admin.posts.index')}}">Posts</a></li>
+                        <li class="px-3"><a href="{{route('admin.categories.index')}}">Categories</a></li>
+                        <li class="px-3"><a href="{{route('admin.tags.index')}}">Tags</a></li>
 
                     </ul>
 

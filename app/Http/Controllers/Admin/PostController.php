@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facade\Storage;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -16,7 +17,8 @@ class PostController extends Controller
         'content' => 'required',
         'published' => 'sometimes|accepted',
         'category_id' => 'nullable|exists:categories,id',
-        'tags'=>'nullable|exists:tags,id'
+        'tags'=>'nullable|exists:tags,id',
+        // 'image' => 'nullable|exists:images
 
     ];
     /**
@@ -95,7 +97,8 @@ class PostController extends Controller
     {
         $post= Post::findOrFail($id);
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories','tags'));
     }
 
     /**
@@ -122,8 +125,10 @@ class PostController extends Controller
     $post->content = $data['content'];
     $post->published = isset($data['published']);
     $post->update();
+    if(isset($data['tags'])) {
+        $post->tags()->sync($data['tags']);
     return redirect()->route('admin.posts.show',$post->id);
-
+    }
 }
 
     /**

@@ -26,12 +26,12 @@
   </div>
 
 
-<a href="{{route('admin.posts.create')}}" class="btn btn-success mb-2">Crea Nuovo Post</a>
+<a href="{{route('admin.categories.create')}}" class="btn btn-success mb-2">Crea Nuove Categorie</a>
 <table class="table">
     <thead>
       <tr >
         <th scope="col">#</th>
-        <th scope="col">Title</th>
+        <th scope="col">Name</th>
         <th scope="col">Creation date</th>
         <th scope="col">Modifica</th>
         <th scope="col">Cancella</th>
@@ -39,17 +39,17 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($posts as $post)
+      @foreach($categories as $category)
       <tr>
         
-        <td><a href="{{route('admin.posts.show',$post->id)}}">{{$post->id}}</a></td>
-        <td><a href="{{route('admin.posts.show',$post->id)}}">{{$post->title}}</a></td>
-        <td>{{$post->created_at}}</td>
-        <td><a href="{{route('admin.posts.edit',$post->id)}}" class="btn btn-primary">Modifica</a></td>
-        <form action="{{route('admin.posts.destroy', $post->id)}}" method="post">
+        <td><a href="{{route('admin.categories.show',$category->id)}}">{{$category->id}}</a></td>
+        <td><a href="{{route('admin.categories.show',$category->id)}}">{{$category->title}}</a></td>
+        <td>{{$category->created_at}}</td>
+        <td><a href="{{route('admin.categories.edit',$category->id)}}" class="btn btn-primary">Modifica</a></td>
+        <form action="{{route('admin.categories.destroy', $category->id)}}" method="post">
         @csrf
         @method('DELETE')
-        <td> <button type="submit" @@click="openModal($event,{{$post->id}})" class="btn btn-danger">Cancella</button></td>
+        <td> <button type="submit" @@click="openModal($event,{{$category->id}})" class="btn btn-danger">Cancella</button></td>
         </form>
       </tr>
       @endforeach
@@ -57,7 +57,7 @@
     </tbody>
     
   </table>
-  {{$posts->links()}}
+  {{$categories->links()}}
 </div>
   
 @endsection

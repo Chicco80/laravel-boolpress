@@ -3,17 +3,17 @@
 @section('content')
 
 
-<form method="post" action="{{route('admin.posts.update',$post->id)}}">
+<form method="post" action="{{route('admin.tags.update', $tag->id)}}">
     @csrf
     @method('PUT')
     <div class="mb-3">
-      <label for="title" class="form-label" placeholder="Title">Titolo</label>
-      <input type="text" name="title" placeholderclass="form-control" id="title" value="{{$post->title}}" >
-      <div></div>
+      <label for="name" class="form-label" placeholder="name">Modifica Categoria</label>
+      <input type="text" name="name" placeholderclass="form-control" id="name" value="{{ old('name', $tag->name)}}" >
+      
     </div>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
       <label for="content" class="form-label">Content</label>
-      <textarea class="form-control" id="content" name="content"cols="30" rows="10">{{$post->content}}</textarea>
+      <textarea class="form-control" id="content" name="content"cols="30" rows="10">{{$category->content}}</textarea>
     </div>
     <div class="mb-3 form-check">
       <input type="checkbox" name="published" class="form-check-input" id="published" {{old('published') ? 'checked': ''}}>
@@ -21,20 +21,14 @@
     </div>
     <div class="mb-3">
       <label for="category_id">Category</label>
-      <select name="category_id" class="form-control" value="{{$post->category_id}}" id="category_id">
+      <select name="category_id" class="form-control" value="{{$category->category_id}}" id="category_id">
         <option value="">Select Category</option>
       @foreach ($categories as $category)
       <option value="{{$category->id}}">{{$category->name}}</option>
       @endforeach
       </select>
-    </div>
+    </div> --}}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript">
-  </script>
-  <script type="text/javascript">
-    bkLib.onDomLoaded(nicEditors.allTextAreas);
-  </script>
-
 @endsection
 

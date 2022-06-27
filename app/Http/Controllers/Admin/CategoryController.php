@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App/Category;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -15,10 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {   
-        $posts= Post::findOrFail($id);
+        // $posts= Post::findOrFail($id);
         $categories = Category::paginate(20);
-        $tags = Tag::all();
-        return view('admin.category.index',compact('categories'));
+        // $tags = Tag::all();
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -39,7 +39,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validationRule);
+        $data = $request->all();
+        $newCategory = new Category();
+        $newCategory->name = $data['name'];
+        $newCategory->slug = $this->getSlug($newCategory->name);
+        $newCategory->save();
+        return redirect()->route('admin.categories.show',$newCategory->id);
     }
 
     /**
@@ -48,9 +54,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return view('admin.categories.show',compact('category'));
+
     }
 
     /**
@@ -59,9 +66,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit',compact('category'));
+
     }
 
     /**
@@ -71,9 +79,20 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate($this->validationRule);
+        $data = $request->all();
+
+        if($category->name != $data['name']){
+            $category->name = $data['name'];
+            $slug = Str::of($category->name)->slug("-");
+            if($slug !=  $category->slug) {
+                $category->slug = $this->getSlug($category->name);
+            }
+        }
+        $category->update();
+        return redirect()->route('admin.categories.show',$category->id);
     }
 
     /**
@@ -84,6 +103,19 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
+    }
+    private function getSlug($title)
+    {
+        $slug = Str::of($title)->slug("-");
+        $count = 1;
+
+        while( Category::where("slug", $slug)->first() ) {
+            $slug = Str::of($title)->slug("-") . "-{$count}";
+            $count++;
+        }
+
+        return $slug;
     }
 }
