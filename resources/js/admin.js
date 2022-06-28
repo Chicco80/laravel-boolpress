@@ -37,6 +37,14 @@ window.boolpress = {
         this.currentForm= e.currentTarget.parentNode;
         $('#deleteModal').modal('show');
     },
+//     previewImage(){
+//         var OfReader = new FileReader();
+//         OfReader.readAsDataURL(document.getElementById("image").file[0]);
+
+//         OfReader.onload = function(OfEvent){
+//             document.getElementById("uploadPrewiew").src = OfEvent.target.result;
+//     }
+// },
     submitForm(){
         this.currentForm.submit();
 

@@ -2,8 +2,8 @@
 
 @section('content')
 
-
-<form method="post" action="{{route('admin.posts.update',$post->id)}}">
+<div class="container">
+<form method="post" action="{{route('admin.posts.update',$post->id)}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -15,6 +15,16 @@
       <label for="content" class="form-label">Content</label>
       <textarea class="form-control" id="content" name="content"cols="30" rows="10">{{$post->content}}</textarea>
     </div>
+
+    <div class="form-group">
+      <img src="http://via.placeholder.com/300x200" class="img-responsive"alt="">
+      <label for="image">Aggiungi Immagine</label>
+      <input type="file" name="image" id="image">
+      @error('image')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
+    </div>
+
     <div class="mb-3 form-check">
       <input type="checkbox" name="published" class="form-check-input" id="published" {{old('published') ? 'checked': ''}}>
       <label class="form-check-label" for="published">Pubblicato</label>
@@ -30,6 +40,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+</div>
   <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript">
   </script>
   <script type="text/javascript">
