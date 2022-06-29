@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facade\Storage;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -19,7 +19,8 @@ class PostController extends Controller
         'category_id' => 'nullable|exists:categories,id',
         'tags'=>'nullable|exists:tags,id',
         // 'image' => 'nullable|image|mimes:jpeg,bmp,png,svg,jpg|max:2048'
-        'image' => 'nullable|image|mimes:jpeg,bmp,png,svg|max:2048|file'
+        //'image' => 'nullable|image|mimes:jpeg,bmp,png,svg|max:2048|file'
+        "image"=> 'nullable|mimes:jpeg,bmp,png,svg,jpg'
 
     ];
     /**

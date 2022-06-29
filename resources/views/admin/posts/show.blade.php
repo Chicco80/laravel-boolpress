@@ -3,6 +3,7 @@
 
 @section('content')
    <h1>{{$post->title}}</h1>
+   <img src="{{ asset('storage/' . $post->image) }}" class="" alt="{{ $post->title }}">
 @if($post->category)
    <h2>{{$post->category->name}}</h2>
 @endif
