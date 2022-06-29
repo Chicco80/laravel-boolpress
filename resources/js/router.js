@@ -6,16 +6,17 @@ import AboutComponent from './pages/AboutComponent';
 import PostsComponent from './pages/PostsComponent';
 import ContactComponent from './pages/ContactComponent';
 import SinglePostComponent from './pages/SinglePostComponent';
+import NotFoundComponent from './pages/NotFoundComponent';
 
 
 
 
 const router= new VueRouter({
-    mode:"history",
+    mode:"history", 
     routes:[
     {
         path: '/',
-        name: 'Home',
+        name: 'home',
         component: HomeComponent
     },
     {
@@ -39,9 +40,14 @@ const router= new VueRouter({
     {
         path: '/posts/:slug',
         name: 'single-post',
-        component: SinglePostsComponent
+        component: SinglePostComponent
     
     },
+    {
+        path: '*',//rotta fallback
+        name: 'page-404',
+        component: NotFoundComponent
+    }
 ]
 });
 

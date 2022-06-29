@@ -12,12 +12,10 @@
                     </div>
                 </div>
             </div>
+            <span class="navbar-text">
+                <a  class="navbar-link" href="/admin">Area Riservata</a>
+            </span>
         </nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/admin">Area Riservata</a></li>
-
-        </ul>
         
     </header>
 </template>
@@ -52,5 +50,7 @@ export default {
 </script>
 
 <style lang='scss'>
-
+.router-link-exact-active{
+    color:red ;
+}
 </style>

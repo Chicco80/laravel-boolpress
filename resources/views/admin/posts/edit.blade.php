@@ -17,7 +17,7 @@
     </div>
 
     <div class="form-group">
-      <img src="http://via.placeholder.com/300x200" class="img-responsive"alt="">
+      <img src="{{asset("storage/{$post->image}")}}" class="img-responsive"alt="">
       <label for="image">Aggiungi Immagine</label>
       <input type="file" name="image" id="image">
       @error('image')

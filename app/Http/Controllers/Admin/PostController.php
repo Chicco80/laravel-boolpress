@@ -18,7 +18,8 @@ class PostController extends Controller
         'published' => 'sometimes|accepted',
         'category_id' => 'nullable|exists:categories,id',
         'tags'=>'nullable|exists:tags,id',
-        'image' => 'nullable|image|mimes:jpeg,bmp,png,svg,jpg|max:2048'
+        // 'image' => 'nullable|image|mimes:jpeg,bmp,png,svg,jpg|max:2048'
+        'image' => 'nullable|image|mimes:jpeg,bmp,png,svg|max:2048|file'
 
     ];
     /**
@@ -68,7 +69,7 @@ class PostController extends Controller
         // }
         $newPost->slug = $this->getSlug($newPost->title);
         if(isset($data['image'])){
-            $path_image = Storage::put('uploads',$data['image']);
+            $path_image = Storage::put("uploads", $data['image']);
             $newPost->image = $path_image;
         }
         $newPost->save();
@@ -128,11 +129,20 @@ class PostController extends Controller
     $post->category_id = $data['category_id'];
     $post->content = $data['content'];
     $post->published = isset($data['published']);
+    if( isset($data['image']) ) {
+        
+        Storage::delete($post->image);
+        $path_image = Storage::put("uploads", $data['image']);
+        $post->image = $path_image;
+    }
     $post->update();
     if(isset($data['tags'])) {
         $post->tags()->sync($data['tags']);
-    return redirect()->route('admin.posts.show',$post->id);
+   
     }
+   
+
+    return redirect()->route('admin.posts.show',$post->id);
 }
 
     /**
