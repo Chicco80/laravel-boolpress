@@ -1,5 +1,6 @@
 <template>
 <section>
+    <div class="container">
     <h1> Posts</h1>
         <ul v-if="posts.length > 0">
             <li v-for="(post,index) in posts" :key="post.id">
@@ -7,6 +8,7 @@
             <router-link :to="{ name: 'single-post', params: { slug: post.slug } }">Visualizza Post</router-link>
             </li>
         </ul>
+        </div>
 </section>
     
 </template>

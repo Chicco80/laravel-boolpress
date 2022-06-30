@@ -10,6 +10,7 @@ use App\Post;
 use App\Category;
 use App\Tag;
 
+
 class PostController extends Controller
 {
     protected $validation =[
@@ -20,7 +21,7 @@ class PostController extends Controller
         'tags'=>'nullable|exists:tags,id',
         // 'image' => 'nullable|image|mimes:jpeg,bmp,png,svg,jpg|max:2048'
         //'image' => 'nullable|image|mimes:jpeg,bmp,png,svg|max:2048|file'
-        "image"=> 'nullable|mimes:jpeg,bmp,png,svg,jpg'
+        "image"=> 'nullable|mimes:jpeg,bmp,png,svg,jpg,webp'
 
     ];
     /**
@@ -31,6 +32,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::paginate(5);
+        
         return view('admin.posts.index', compact('posts'));
     }
 

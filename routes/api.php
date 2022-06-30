@@ -24,3 +24,5 @@ Route::get('/posts/{slug}', 'Api\PostController@show');
 //ROTTA PER SALVATAGGIO DEI COMMENTI IN POST, NON IN GET PERCHE' NON HO BISOGNO DI UNA VIEW MA DI RICHIAMARE LA FUNZIONE STORE
 
 Route::post('/comments','Api\CommentController@store');
+Route::get('/categories','Api\CategoryController@index');
+Route::get('/categories/{slug}', 'Api\CategoryController@show');

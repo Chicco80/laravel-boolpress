@@ -2,18 +2,19 @@
 <section>
 <div v-if="post">
             <h1 >{{post.title}}</h1>
+             <img :src="`/storage/${post.image}`" alt="">
             <p>{{post.content}}</p>
-            <ul v-if="post.tags">
-                <li v-for="tag in post.tags" :key="tag.id">{{tag.name}}</li>
-            </ul>
-            <img :src="`/storage/${post.image}`" alt="">
+             <div v-if="post.tags">
+                <p v-for="tag in post.tags" :key="tag.id">{{tag.name}}</p>
+            </div>
+           
         </div>
-        <form @submit.prevent="addComment()">
+        <form @submit.prevent="addComment()" class="py-4">
             <label for="username">Inserisci il nome</label>
-            <input v-model="formData.username" type="text" />
-            <label for="content">Inserisci il contenuto</label>
-            <input v-model="formData.content" type="text" />
-            <button type="submit">Invia</button>
+            <input class="mx-2" v-model="formData.username" type="text" /> </br>
+            <label for="content">Il tuo commento </label>
+            <input v-model="formData.content" type="text" /></br>
+            <button class="btn btn-primary" type="submit">Invia</button>
         </form>
        
 

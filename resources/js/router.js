@@ -7,6 +7,7 @@ import PostsComponent from './pages/PostsComponent';
 import ContactComponent from './pages/ContactComponent';
 import SinglePostComponent from './pages/SinglePostComponent';
 import NotFoundComponent from './pages/NotFoundComponent';
+import CategoryComponent from './pages/CategoryComponent';
 
 
 
@@ -44,9 +45,16 @@ const router= new VueRouter({
     
     },
     {
+        path: '/categories/:slug',
+        name: '/category',
+        component: CategoryComponent
+        
+    },
+    {
         path: '*',//rotta fallback
         name: 'page-404',
         component: NotFoundComponent
+        
     }
 ]
 });

@@ -1,6 +1,7 @@
 <template>
     <header>
           <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
             <router-link :to="{ name: menuItem[0].routeName }" class="navbar-brand">{{menuItem[0].label}}</router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -15,6 +16,7 @@
             <span class="navbar-text">
                 <a  class="navbar-link" href="/admin">Area Riservata</a>
             </span>
+            </div>
         </nav>
         
     </header>
